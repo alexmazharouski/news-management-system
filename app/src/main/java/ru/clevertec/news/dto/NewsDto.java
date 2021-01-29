@@ -10,7 +10,7 @@ import java.time.LocalDate;
 @Setter
 @RequiredArgsConstructor
 public class NewsDto {
-    private String title;
-    private LocalDate date;
-    private String article;
+    private final String title;
+    private final LocalDate date;
+    private final String article;
 }

@@ -1,5 +1,6 @@
 package ru.clevertec.news.services.news;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.clevertec.news.dto.NewsDto;
 import ru.clevertec.news.entities.news.News;
@@ -8,13 +9,10 @@ import ru.clevertec.news.repositories.NewsRepository;
 import java.util.NoSuchElementException;
 
 @Service
+@RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService{
 
-    private NewsRepository newsRepository;
-
-    public NewsServiceImpl(NewsRepository newsRepository) {
-        this.newsRepository = newsRepository;
-    }
+    private final NewsRepository newsRepository;
 
     @Override
     public News getNews(int id) {
@@ -39,5 +37,6 @@ public class NewsServiceImpl implements NewsService{
     public void deleteNews(int id) {
         News news = getNews(id);
         newsRepository.delete(news);
+
     }
 }

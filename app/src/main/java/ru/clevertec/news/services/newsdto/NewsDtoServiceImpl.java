@@ -10,11 +10,7 @@ import java.util.ArrayList;
 public class NewsDtoServiceImpl implements NewsDtoService{
     @Override
     public NewsDto convertToDto(News news) {
-        NewsDto newsDto = new NewsDto();
-        newsDto.setArticle(news.getArticle());
-        newsDto.setTitle(news.getTitle());
-        newsDto.setDate(news.getDate());
-        return newsDto;
+        return new NewsDto(news.getTitle(), news.getDate(), news.getArticle());
     }
 
     @Override

@@ -13,7 +13,6 @@ import java.util.List;
 @Entity
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,6 +20,6 @@ public class News {
     private String title;
     private LocalDate date;
     private String article;
-    @OneToMany(mappedBy = "news")
+    @OneToMany(mappedBy = "news", cascade = CascadeType.REMOVE)
     private List<Comment> commentList;
 }
