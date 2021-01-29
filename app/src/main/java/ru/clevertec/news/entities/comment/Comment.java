@@ -1,6 +1,9 @@
 package ru.clevertec.news.entities.comment;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.RequiredArgsConstructor;
+import lombok.Setter;
 import ru.clevertec.news.entities.news.News;
 import ru.clevertec.news.entities.user.User;
 
@@ -10,17 +13,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.time.LocalDate;
 
-@Data
+@Getter
+@Setter
+@RequiredArgsConstructor
 @Entity
 public class Comment {
     @Id
-    private long id;
+    private int id;
     private String message;
-    private LocalDate date;
     @ManyToOne
-    @JoinColumn(name = "users")
+    @JoinColumn(name = "usersid")
     private User user;
     @ManyToOne
-    @JoinColumn(name = "news")
+    @JoinColumn(name = "newsid")
     private News news;
 }
