@@ -6,10 +6,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import ru.clevertec.news.entities.comment.Comment;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.List;
 
 @Getter
@@ -19,6 +16,7 @@ import java.util.List;
 @Table(name = "users")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String username;
     @OneToMany(mappedBy = "user")

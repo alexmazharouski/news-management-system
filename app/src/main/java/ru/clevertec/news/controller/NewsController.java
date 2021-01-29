@@ -50,4 +50,9 @@ public class NewsController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
     }
+
+    @DeleteMapping("/{id}")
+    public void deleteNews(@PathVariable int id) {
+
+    }
 }

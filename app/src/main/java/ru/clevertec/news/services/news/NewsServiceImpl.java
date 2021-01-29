@@ -34,4 +34,10 @@ public class NewsServiceImpl implements NewsService{
         news.setDate(newsDto.getDate());
         newsRepository.save(news);
     }
+
+    @Override
+    public void deleteNews(int id) {
+        News news = getNews(id);
+        newsRepository.delete(news);
+    }
 }

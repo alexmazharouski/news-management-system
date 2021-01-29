@@ -7,10 +7,7 @@ import lombok.Setter;
 import ru.clevertec.news.entities.news.News;
 import ru.clevertec.news.entities.user.User;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -19,6 +16,7 @@ import java.time.LocalDate;
 @Entity
 public class Comment {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String message;
     @ManyToOne
