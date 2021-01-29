@@ -1,11 +1,15 @@
 package ru.clevertec.news.services.news;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.clevertec.news.dto.NewsDto;
 import ru.clevertec.news.entities.news.News;
 import ru.clevertec.news.repositories.NewsRepository;
+import ru.clevertec.news.utils.Constants;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
@@ -38,5 +42,11 @@ public class NewsServiceImpl implements NewsService{
         News news = getNews(id);
         newsRepository.delete(news);
 
+    }
+
+    @Override
+    public List<News> getAllNews(int pageNum) {
+        Pageable pageable = PageRequest.of(pageNum, Constants.PAGE_SIZE);
+        return newsRepository.findAll(pageable).toList();
     }
 }

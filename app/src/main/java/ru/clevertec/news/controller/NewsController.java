@@ -11,6 +11,7 @@ import ru.clevertec.news.services.news.NewsService;
 import ru.clevertec.news.services.newsdto.NewsDtoService;
 import ru.clevertec.news.utils.Constants;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @RestController
@@ -22,10 +23,9 @@ public class NewsController {
     private final NewsDtoService dtoService;
 
     @GetMapping(path = "/{id}")
-    public NewsDto getNews(@PathVariable int id) {
-        News news = newsService.getNews(id);
+    public News getNews(@PathVariable int id) {
         try {
-            return dtoService.convertToDto(news);
+            return newsService.getNews(id);
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
@@ -56,5 +56,10 @@ public class NewsController {
         } catch (NoSuchElementException e) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @GetMapping
+    public List<News> getAllNews(@RequestParam(name = "page", defaultValue = "1") int pageNum) {
+        return newsService.getAllNews(pageNum);
     }
 }
