@@ -1,12 +1,8 @@
 package ru.clevertec.news.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
-@Setter
-@Getter
-@RequiredArgsConstructor
+@Data
 public class CommentDto {
     private final String message;
     private final String userName;

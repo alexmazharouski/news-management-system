@@ -1,20 +1,16 @@
 package ru.clevertec.news.entities.news;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
-import org.hibernate.annotations.GeneratorType;
+import lombok.Data;
+import lombok.ToString;
 import ru.clevertec.news.entities.comment.Comment;
 
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
+@Data
 @Entity
-@Getter
-@Setter
 public class News {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,5 +25,6 @@ public class News {
 
     @OneToMany(mappedBy = "news", cascade = CascadeType.REMOVE)
     @JsonIgnore
+    @ToString.Exclude
     private List<Comment> commentList;
 }

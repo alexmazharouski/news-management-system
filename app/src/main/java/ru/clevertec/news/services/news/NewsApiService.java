@@ -1,29 +1,24 @@
 package ru.clevertec.news.services.news;
 
 import lombok.RequiredArgsConstructor;
-import lombok.extern.log4j.Log4j;
-import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import ru.clevertec.news.dto.NewsDto;
 import ru.clevertec.news.entities.news.News;
 import ru.clevertec.news.repositories.NewsRepository;
-import ru.clevertec.news.utils.Constants;
 
 import java.util.List;
 import java.util.NoSuchElementException;
 
-@Slf4j
 @Service
 @RequiredArgsConstructor
-public class NewsServiceImpl implements NewsService{
+public class NewsApiService implements NewsService {
 
     private final NewsRepository newsRepository;
 
     @Override
-    public News getNews(int id) {
-        return newsRepository.findById(id).orElseThrow(NoSuchElementException::new);
+    public News getNews(int newsId) {
+        return newsRepository.findById(newsId).orElseThrow(NoSuchElementException::new);
     }
 
     @Override
@@ -32,8 +27,8 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public void updateNews(NewsDto newsDto, int id) {
-        News news = getNews(id);
+    public void updateNews(NewsDto newsDto) {
+        News news = getNews(newsDto.getId());
         news.setTitle(newsDto.getTitle());
         news.setArticle(newsDto.getArticle());
         news.setDate(newsDto.getDate());
@@ -41,15 +36,12 @@ public class NewsServiceImpl implements NewsService{
     }
 
     @Override
-    public void deleteNews(int id) {
-        News news = getNews(id);
-        newsRepository.delete(news);
-
+    public void deleteNews(int newsId) {
+        newsRepository.deleteById(newsId);
     }
 
     @Override
-    public List<News> getAllNews(int pageNum) {
-        Pageable pageable = PageRequest.of(pageNum, Constants.PAGE_SIZE);
+    public List<News> getAllNews(Pageable pageable) {
         return newsRepository.findAll(pageable).toList();
     }
 }

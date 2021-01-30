@@ -5,8 +5,6 @@ import ru.clevertec.news.entities.news.News;
 
 public interface NewsDtoService {
 
-    NewsDto convertToDto(News news);
-
     News convertToEntity(NewsDto newsDto);
 
 }

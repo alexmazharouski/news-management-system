@@ -1,13 +1,12 @@
 package ru.clevertec.news.entities.user;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.Data;
 import ru.clevertec.news.entities.comment.Comment;
+
 import javax.persistence.*;
 import java.util.List;
 
-@Getter
-@Setter
+@Data
 @Entity
 @Table(name = "users")
 public class User {

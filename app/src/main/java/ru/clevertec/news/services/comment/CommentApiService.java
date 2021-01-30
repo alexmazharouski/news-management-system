@@ -11,13 +11,13 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
-public class CommentServiceImpl implements CommentService{
+public class CommentApiService implements CommentService {
     private final CommentRepository commentRepository;
 
     @Override
-    public List<CommentDto> getCommentsForNews(int id) {
+    public List<CommentDto> getCommentsForNews(int newsId) {
         List<CommentDto> dtoList = new ArrayList<>();
-        for (Comment comment : commentRepository.findByNewsId(id)) {
+        for (Comment comment : commentRepository.findByNewsId(newsId)) {
             dtoList.add(new CommentDto(comment.getMessage(), comment.getUser().getUsername()));
         }
         return dtoList;

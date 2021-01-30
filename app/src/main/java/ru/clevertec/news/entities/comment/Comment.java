@@ -1,15 +1,13 @@
 package ru.clevertec.news.entities.comment;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 import ru.clevertec.news.entities.news.News;
 import ru.clevertec.news.entities.user.User;
+
 import javax.persistence.*;
 
 
-@Getter
-@Setter
+@Data
 @Entity
 public class Comment {
     @Id

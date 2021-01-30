@@ -7,11 +7,7 @@ import ru.clevertec.news.entities.news.News;
 import java.util.ArrayList;
 
 @Service
-public class NewsDtoServiceImpl implements NewsDtoService{
-    @Override
-    public NewsDto convertToDto(News news) {
-        return new NewsDto(news.getTitle(), news.getDate(), news.getArticle());
-    }
+public class NewsDtoApiService implements NewsDtoService{
 
     @Override
     public News convertToEntity(NewsDto newsDto) {

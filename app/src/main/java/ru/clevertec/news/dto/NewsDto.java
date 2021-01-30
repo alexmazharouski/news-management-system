@@ -1,15 +1,12 @@
 package ru.clevertec.news.dto;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.Setter;
+import lombok.Data;
 
 import java.time.LocalDate;
 
-@Getter
-@Setter
-@RequiredArgsConstructor
+@Data
 public class NewsDto {
+    private final int id;
     private final String title;
     private final LocalDate date;
     private final String article;

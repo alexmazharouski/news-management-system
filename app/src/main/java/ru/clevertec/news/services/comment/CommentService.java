@@ -5,5 +5,5 @@ import ru.clevertec.news.dto.CommentDto;
 import java.util.List;
 
 public interface CommentService {
-    List<CommentDto> getCommentsForNews(int id);
+    List<CommentDto> getCommentsForNews(int newsId);
 }
