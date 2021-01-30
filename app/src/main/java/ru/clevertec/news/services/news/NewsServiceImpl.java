@@ -1,6 +1,8 @@
 package ru.clevertec.news.services.news;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.log4j.Log4j;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -12,6 +14,7 @@ import ru.clevertec.news.utils.Constants;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Slf4j
 @Service
 @RequiredArgsConstructor
 public class NewsServiceImpl implements NewsService{

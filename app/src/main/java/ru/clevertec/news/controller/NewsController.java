@@ -1,6 +1,7 @@
 package ru.clevertec.news.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -14,6 +15,7 @@ import ru.clevertec.news.utils.Constants;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+@Slf4j
 @RestController
 @RequestMapping(path = "api/news")
 @RequiredArgsConstructor
@@ -24,6 +26,7 @@ public class NewsController {
 
     @GetMapping(path = "/{id}")
     public News getNews(@PathVariable int id) {
+        log.debug("Getting a news {}", id);
         try {
             return newsService.getNews(id);
         } catch (NoSuchElementException e) {
@@ -33,13 +36,15 @@ public class NewsController {
 
     @PostMapping(path = "/adding", consumes = "application/json")
     public ResponseEntity<String> addNews(@RequestBody NewsDto newsDto) {
+        log.info("Adding a new News {}", newsDto);
         News newsForAdding = dtoService.convertToEntity(newsDto);
         newsService.addNews(newsForAdding);
-        return new ResponseEntity<>(Constants.NEWS_ADDED, HttpStatus.OK);
+        return new ResponseEntity<>(Constants.NEWS_ADDED, HttpStatus.CREATED);
     }
 
     @PostMapping(path = "/edit/{id}", consumes = "application/json")
     public ResponseEntity<String> updateNews(@RequestBody NewsDto newsDto, @PathVariable int id) {
+        log.debug("Updating a news id {}", id);
         try {
             newsService.updateNews(newsDto, id);
             return new ResponseEntity<>(Constants.NEWS_UPDATED, HttpStatus.OK);
@@ -50,6 +55,7 @@ public class NewsController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteNews(@PathVariable int id) {
+        log.debug("Deleting a news {}", id);
         try {
             newsService.deleteNews(id);
             return new ResponseEntity<>(Constants.NEWS_DELETED, HttpStatus.OK);
